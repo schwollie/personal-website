@@ -1,109 +1,114 @@
-// Advanced animations and visual effects
+/**
+ * Animation controller for scroll-based and entrance animations
+ */
 class AnimationController {
     constructor() {
         this.observers = new Map();
-        this.animationQueue = [];
-        this.isAnimating = false;
         this.reducedMotion = false;
-        
-        this.initializeIntersectionObservers();
-        this.initializeParallaxEffects();
-        this.initializePerformanceMonitoring();
+        this.isInitialized = false;
     }
-    
-    initializeIntersectionObservers() {
-        // Fade in animation observer
-        const fadeInObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateFadeIn(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+
+    async init() {
+        if (this.isInitialized) return;
+
+        this.checkMotionPreferences();
+        this.initializeObservers();
+        this.initializeParallax();
+        this.initializeHeroAnimations();
         
-        // Slide in animation observer
-        const slideInObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateSlideIn(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.2,
-            rootMargin: '0px 0px -30px 0px'
-        });
+        this.isInitialized = true;
+    }
+
+    checkMotionPreferences() {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        this.reducedMotion = prefersReducedMotion.matches;
         
-        // Counter animation observer
+        if (this.reducedMotion) {
+            document.documentElement.classList.add('reduced-motion');
+        }
+
+        prefersReducedMotion.addEventListener('change', (e) => {
+            this.reducedMotion = e.matches;
+            document.documentElement.classList.toggle('reduced-motion', e.matches);
+        });
+    }
+
+    initializeObservers() {
+        // Counter observer for hero stats
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     this.animateCounters(entry.target);
                 }
             });
-        }, {
-            threshold: 0.5
+        }, { threshold: 0.5 });
+
+        // Section visibility observer
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateSection(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         });
-        
-        this.observers.set('fadeIn', fadeInObserver);
-        this.observers.set('slideIn', slideInObserver);
+
         this.observers.set('counter', counterObserver);
-        
-        // Observe elements after DOM is ready
-        setTimeout(() => {
-            this.observeElements();
-        }, 100);
+        this.observers.set('section', sectionObserver);
+
+        // Observe elements
+        setTimeout(() => this.observeElements(), 100);
     }
-    
+
     observeElements() {
-        // Elements for fade in animation
-        const fadeElements = document.querySelectorAll('.section, .experience-card, .engagement-card');
-        fadeElements.forEach(el => {
-            this.observers.get('fadeIn').observe(el);
-        });
-        
-        // Elements for slide in animation
-        const slideElements = document.querySelectorAll('.timeline-item, .skill-category');
-        slideElements.forEach(el => {
-            this.observers.get('slideIn').observe(el);
-        });
-        
-        // Elements with counters
-        const counterElements = document.querySelectorAll('.stat-number, .skill-level');
-        counterElements.forEach(el => {
-            this.observers.get('counter').observe(el);
+        // Observe hero stats for counter animation
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            this.observers.get('counter').observe(heroStats);
+        }
+
+        // Observe sections for visibility animations
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            this.observers.get('section').observe(section);
         });
     }
-    
-    animateFadeIn(element) {
-        if (element.dataset.animated || this.reducedMotion) return;
-        
-        element.classList.add('visible');
-        element.dataset.animated = 'true';
+
+    initializeHeroAnimations() {
+        // Trigger hero stats animation immediately
+        setTimeout(() => {
+            const heroStats = document.querySelector('.hero-stats');
+            if (heroStats) {
+                this.animateCounters(heroStats);
+            }
+        }, 1000);
     }
-    
-    animateSlideIn(element) {
-        if (element.dataset.animated || this.reducedMotion) return;
-        
-        element.classList.add('animate');
-        element.dataset.animated = 'true';
-    }
-    
-    animateCounters(element) {
-        if (element.dataset.animated || this.reducedMotion) return;
-        
-        const counters = element.querySelectorAll('[data-count]');
+
+    animateCounters(container) {
+        if (container.dataset.animated || this.reducedMotion) return;
+
+        const counters = container.querySelectorAll('[data-count]');
         counters.forEach(counter => {
-            this.animateNumber(counter);
+            if (!counter.dataset.animated) {
+                this.animateNumber(counter);
+                counter.dataset.animated = 'true';
+            }
         });
-        
-        element.dataset.animated = 'true';
+
+        container.dataset.animated = 'true';
     }
-    
+
     animateNumber(element) {
-        const target = parseFloat(element.dataset.count) || parseFloat(element.textContent);
+        const targetValue = element.dataset.count || element.textContent;
+        const target = parseFloat(targetValue);
+
+        if (isNaN(target)) {
+            element.textContent = targetValue;
+            return;
+        }
+
         const duration = parseInt(element.dataset.duration) || 2000;
         const increment = target / (duration / 16);
         let current = 0;
@@ -111,7 +116,7 @@ class AnimationController {
         const updateNumber = () => {
             current += increment;
             if (current < target) {
-                element.textContent = Math.floor(current);
+                element.textContent = target % 1 === 0 ? Math.floor(current) : current.toFixed(1);
                 requestAnimationFrame(updateNumber);
             } else {
                 element.textContent = target;
@@ -120,23 +125,30 @@ class AnimationController {
         
         updateNumber();
     }
-    
-    initializeParallaxEffects() {
-        if (this.reducedMotion) return;
+
+    animateSection(section) {
+        if (section.dataset.animated || this.reducedMotion) return;
         
+        section.classList.add('visible');
+        section.dataset.animated = 'true';
+    }
+
+    initializeParallax() {
+        if (this.reducedMotion) return;
+
         let ticking = false;
         
         const updateParallax = () => {
             const scrolled = window.pageYOffset;
             
-            // Hero parallax - subtle effect
+            // Hero parallax
             const hero = document.querySelector('.hero-section');
             if (hero) {
-                const rate = scrolled * -0.1;
+                const rate = scrolled * -0.3;
                 hero.style.transform = `translate3d(0, ${rate}px, 0)`;
             }
             
-            // Profile image rotation - slower
+            // Profile ring rotation
             const profileRing = document.querySelector('.profile-ring');
             if (profileRing) {
                 const rotation = scrolled * 0.2;
@@ -146,104 +158,38 @@ class AnimationController {
             ticking = false;
         };
         
-        const requestParallaxUpdate = () => {
+        const requestParallaxUpdate = Utils.debounce(() => {
             if (!ticking) {
                 requestAnimationFrame(updateParallax);
                 ticking = true;
             }
-        };
+        }, 16);
         
         window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
-        this.requestParallaxUpdate = requestParallaxUpdate;
+        this.parallaxHandler = requestParallaxUpdate;
     }
-    
-    initializePerformanceMonitoring() {
-        // Monitor animation performance
-        let frameCount = 0;
-        let lastTime = performance.now();
-        
-        const measureFPS = () => {
-            frameCount++;
-            const currentTime = performance.now();
-            
-            if (currentTime - lastTime >= 1000) {
-                const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
-                
-                // Reduce animation quality if FPS is too low
-                if (fps < 30) {
-                    this.reducedMotion = true;
-                    document.documentElement.style.setProperty('--animation-duration', '0.1s');
-                } else {
-                    this.reducedMotion = false;
-                    document.documentElement.style.setProperty('--animation-duration', '0.3s');
-                }
-                
-                frameCount = 0;
-                lastTime = currentTime;
-            }
-            
-            requestAnimationFrame(measureFPS);
-        };
-        
-        if (window.requestAnimationFrame) {
-            measureFPS();
-        }
-        
-        // Respect user's motion preferences
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (prefersReducedMotion.matches) {
-            this.reducedMotion = true;
-            document.documentElement.classList.add('reduced-motion');
-        }
-        
-        prefersReducedMotion.addEventListener('change', (e) => {
-            this.reducedMotion = e.matches;
-            if (e.matches) {
-                document.documentElement.classList.add('reduced-motion');
-            } else {
-                document.documentElement.classList.remove('reduced-motion');
-            }
-        });
-    }
-    
-    // Public methods for manual animation triggering
+
     triggerAnimation(element, animationType) {
         if (this.reducedMotion) return;
         
         switch (animationType) {
             case 'fadeIn':
-                this.animateFadeIn(element);
-                break;
-            case 'slideIn':
-                this.animateSlideIn(element);
+                this.animateSection(element);
                 break;
             case 'pulse':
                 element.style.animation = 'pulse 0.6s ease';
                 break;
         }
     }
-    
-    // Cleanup method
+
     destroy() {
         this.observers.forEach(observer => observer.disconnect());
         this.observers.clear();
         
-        // Remove event listeners
-        if (this.requestParallaxUpdate) {
-            window.removeEventListener('scroll', this.requestParallaxUpdate);
+        if (this.parallaxHandler) {
+            window.removeEventListener('scroll', this.parallaxHandler);
         }
+        
+        this.isInitialized = false;
     }
-}
-
-// Initialize animation controller when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure all elements are rendered
-    setTimeout(() => {
-        window.animationController = new AnimationController();
-    }, 100);
-});
-
-// Export for module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AnimationController;
 }
