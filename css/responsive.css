@@ -1,0 +1,287 @@
+/* Mobile First Approach */
+
+/* Base styles for mobile (320px and up) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero-section {
+        padding: 2rem 0;
+        min-height: auto;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .profile-ring {
+        width: 170px;
+        height: 170px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .section-header {
+        padding: 1rem 1.5rem;
+    }
+    
+    .section-content {
+        padding: 1.5rem;
+    }
+    
+    .timeline {
+        padding-left: 1rem;
+    }
+    
+    .timeline-item {
+        padding-left: 1.5rem;
+    }
+    
+    .experience-card {
+        padding: 1.5rem;
+    }
+    
+    .skill-category {
+        padding: 1rem;
+    }
+}
+
+/* Small tablets and large phones (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .engagement-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .profile-container {
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .engagement-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop (1025px and up) */
+@media (min-width: 1025px) {
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .engagement-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large desktop (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 3rem;
+    }
+    
+    .hero-section {
+        padding: 6rem 0;
+    }
+    
+    .main-content {
+        padding: 6rem 0;
+    }
+}
+
+/* Ultra-wide screens (1600px and up) */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .profile-container {
+        gap: 4rem;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.75rem;
+    }
+    
+    .engagement-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Print styles */
+@media print {
+    .hero-section {
+        background: none !important;
+        color: black !important;
+        page-break-after: always;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+    
+    .section-content {
+        display: block !important;
+    }
+    
+    .toggle-icon {
+        display: none !important;
+    }
+    
+    .external-link {
+        color: black !important;
+    }
+    
+    .external-link::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+    
+    .footer {
+        display: none !important;
+    }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .profile-ring {
+        animation: none !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #0000ff;
+        --secondary-color: #ffffff;
+        --accent-color: #ff0000;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --background: #ffffff;
+        --surface: #ffffff;
+        --border: #000000;
+    }
+    
+    .section {
+        border: 2px solid var(--border) !important;
+    }
+    
+    .skill-bar {
+        background: var(--primary-color) !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #3b82f6;
+        --secondary-color: #1e293b;
+        --accent-color: #06b6d4;
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --background: #0f172a;
+        --surface: #1e293b;
+        --border: #334155;
+    }
+    
+    .hero-section {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    }
+    
+    .profile-image {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Orientation changes */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero-section {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+    
+    .profile-container {
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+    }
+    
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .profile-ring {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .section-header {
+        padding: 1.5rem 2rem;
+    }
+    
+    .external-link {
+        padding: 0.5rem;
+        margin: -0.5rem;
+    }
+    
+    .skill-item {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Larger touch targets */
+    .footer-links a {
+        padding: 0.5rem;
+        margin: -0.5rem 0.25rem;
+    }
+}

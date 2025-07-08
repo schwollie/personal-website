@@ -1,0 +1,149 @@
+{
+  "personal": {
+    "name": "Lars",
+    "title": "Computer Science Student & Developer",
+    "location": "Munich, Germany",
+    "email": "contact@lars-website.com",
+    "description": "Currently pursuing Master's degree in Computer Science at TUM and working as a developer at Vector Informatik. Passionate about mixed reality, path planning, and automotive technology."
+  },
+  "education": [
+    {
+      "degree": "Master of Science - Computer Science",
+      "institution": "Technical University of Munich (TUM)",
+      "startDate": "2021",
+      "endDate": "Present",
+      "status": "1st Semester",
+      "description": "Focusing on advanced computer science topics including artificial intelligence, software engineering, and system design."
+    },
+    {
+      "degree": "Bachelor of Science - Computer Science", 
+      "institution": "Technical University of Munich (TUM)",
+      "startDate": "2013",
+      "endDate": "2021",
+      "gpa": "2.0",
+      "thesis": {
+        "title": "Intelligent and Automated Path-Planning with Mixed Reality for Mobile Systems within Hospital Environments",
+        "grade": "1.0"
+      },
+      "description": "Comprehensive study of computer science fundamentals with specialization in mixed reality and automated systems."
+    },
+    {
+      "degree": "Abitur",
+      "institution": "Dorfen High School",
+      "startDate": "2011",
+      "endDate": "2013",
+      "grade": "1.2",
+      "description": "Completed secondary education with focus on mathematics and sciences."
+    }
+  ],
+  "experience": [
+    {
+      "position": "Working Student - Software Developer",
+      "company": "Vector Informatik GmbH",
+      "startDate": "March 2022",
+      "endDate": "Present",
+      "location": "Stuttgart, Germany",
+      "description": "Developing software solutions for automotive industry, working with embedded systems and contributing to innovative projects in the automotive technology sector.",
+      "technologies": ["C++", "Embedded Systems", "Automotive Software", "Real-time Systems"],
+      "achievements": [
+        "Contributed to automotive software development projects",
+        "Implemented embedded system solutions",
+        "Collaborated with cross-functional teams"
+      ]
+    }
+  ],
+  "skills": {
+    "programming": [
+      {
+        "name": "C++",
+        "level": 90,
+        "source": "University & Work at Vector Informatik"
+      },
+      {
+        "name": "Java", 
+        "level": 85,
+        "source": "University Courses"
+      },
+      {
+        "name": "Python",
+        "level": 80,
+        "source": "University & Personal Projects"
+      },
+      {
+        "name": "JavaScript",
+        "level": 75,
+        "source": "University & Web Development"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Embedded Systems",
+        "level": 85,
+        "source": "Work at Vector Informatik"
+      },
+      {
+        "name": "Mixed Reality",
+        "level": 80,
+        "source": "Bachelor Thesis Research"
+      },
+      {
+        "name": "Machine Learning",
+        "level": 75,
+        "source": "University Courses & Projects"
+      },
+      {
+        "name": "Database Systems",
+        "level": 70,
+        "source": "University Courses"
+      }
+    ],
+    "languages": [
+      {
+        "name": "German",
+        "level": 100,
+        "source": "Native Language"
+      },
+      {
+        "name": "English",
+        "level": 90,
+        "source": "University & Professional Use"
+      }
+    ]
+  },
+  "engagement": [
+    {
+      "organization": "LYMINA Band",
+      "role": "Band Member",
+      "startDate": "2018",
+      "endDate": "Present",
+      "description": "Active member of LYMINA, contributing to musical performances and creative projects. Participating in live performances and music production.",
+      "website": "https://www.lymina.de",
+      "type": "music"
+    },
+    {
+      "organization": "Kunst? e.V. Taufkirchen",
+      "role": "Member",
+      "startDate": "2023",
+      "endDate": "Present", 
+      "description": "Member of Kunst? e.V. Taufkirchen, engaging in cultural and artistic activities within the local community.",
+      "type": "culture"
+    },
+    {
+      "organization": "Ukulele Orchestra Dorfen",
+      "role": "Orchestra Member",
+      "startDate": "2018",
+      "endDate": "Present",
+      "description": "Active member of the Ukulele Orchestra Dorfen, participating in regular performances and community events. Contributing to the musical diversity of the local area.",
+      "website": "https://www.ukulelenorchester-dorfen.de/",
+      "type": "music"
+    },
+    {
+      "organization": "Jugend Musiziert",
+      "role": "Participant",
+      "startDate": "Various Years",
+      "endDate": "Various Years",
+      "description": "Participated in 'Jugend Musiziert' competition, demonstrating musical skills and dedication to artistic development.",
+      "type": "competition"
+    }
+  ]
+}
