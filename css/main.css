@@ -356,12 +356,14 @@ body {
     top: -2rem;
     left: 0;
     background: var(--text-primary);
-    color: white;
+    color: var(--background);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     font-size: 0.8rem;
     white-space: nowrap;
     z-index: 10;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .skill-name {
@@ -444,7 +446,7 @@ body {
 /* Footer */
 .footer {
     background: var(--text-primary);
-    color: white;
+    color: var(--background);
     padding: 2rem 0;
     margin-top: 4rem;
 }
@@ -461,7 +463,7 @@ body {
 }
 
 .footer-links a {
-    color: white;
+    color: var(--background);
     font-size: 1.2rem;
     transition: color 0.3s ease;
 }

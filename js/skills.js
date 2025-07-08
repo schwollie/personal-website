@@ -75,7 +75,7 @@ class SkillsController {
         tooltip.style.cssText = `
             position: absolute;
             background: var(--text-primary);
-            color: white;
+            color: var(--background);
             padding: 0.5rem;
             border-radius: 4px;
             font-size: 0.8rem;
@@ -84,6 +84,8 @@ class SkillsController {
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         `;
         
         document.body.appendChild(tooltip);

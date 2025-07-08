@@ -235,6 +235,11 @@
     .profile-image {
         border-color: rgba(255, 255, 255, 0.1);
     }
+    
+    .footer {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+    }
 }
 
 /* Orientation changes */
