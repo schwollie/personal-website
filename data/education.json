@@ -1,0 +1,35 @@
+{
+  "educationItems": [
+    {
+      "degree": "Master of Science - Computer Science",
+      "institution": "Technical University of Munich (TUM)",
+      "startDate": "2025",
+      "endDate": "Present",
+      "status": "1st Semester",
+      "description": "Focusing on advanced computer science topics including artificial intelligence, virtual reality, software engineering, and system design.",
+      "grade": null,
+      "thesis": null
+    },
+    {
+      "degree": "Bachelor of Science - Computer Science",
+      "institution": "Technical University of Munich (TUM)", 
+      "startDate": "2021",
+      "endDate": "2024",
+      "gpa": "2.0",
+      "thesis": {
+        "title": "Intelligent and Automated Path-Planning with Mixed Reality for Mobile Systems within Hospital Environments",
+        "grade": "1.0",
+        "file": "data/other/Bachelor_Thesis.pdf"
+      },
+      "description": "Comprehensive study of computer science fundamentals, enhanced by specialization in mixed reality and motion planning through my bachelor thesis. Gained insights into practical applications through a minor in mechanical engineering and participation in an AI seminar."
+    },
+    {
+      "degree": "Abitur",
+      "institution": "Dorfen High School",
+      "startDate": "2013", 
+      "endDate": "2021",
+      "grade": "1.2",
+      "description": "Completed secondary education with focus on mathematics and sciences."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "engagementItems": [
+    {
+      "organization": "LYMINA Band",
+      "role": "Band Member",
+      "startDate": "2018",
+      "endDate": "Present",
+      "description": "Active member of LYMINA, contributing to musical performances and creative projects. Participating in live performances and music production.",
+      "website": "https://www.lymina.de",
+      "type": "music",
+      "icon": "fas fa-music"
+    },
+    {
+      "organization": "Kunst? e.V. Taufkirchen",
+      "role": "Member",
+      "startDate": "2023",
+      "endDate": "Present",
+      "description": "Member of Kunst? e.V. Taufkirchen, engaging in cultural and artistic activities within the local community.",
+      "website": null,
+      "type": "culture",
+      "icon": "fas fa-palette"
+    },
+    {
+      "organization": "Ukulele Orchestra Dorfen",
+      "role": "Orchestra Member", 
+      "startDate": "2018",
+      "endDate": "Present",
+      "description": "Active member of the Ukulele Orchestra Dorfen, participating in regular performances and community events. Contributing to the musical diversity of the local area.",
+      "website": "https://www.ukulelenorchester-dorfen.de/",
+      "type": "music",
+      "icon": "fas fa-guitar"
+    },
+    {
+      "organization": "Jugend Musiziert",
+      "role": "Participant",
+      "startDate": "Various Years",
+      "endDate": "Various Years", 
+      "description": "Participated in 'Jugend Musiziert' competition, demonstrating musical skills and dedication to artistic development.",
+      "website": null,
+      "type": "competition",
+      "icon": "fas fa-trophy"
+    }
+  ]
+}

@@ -6,6 +6,11 @@ class WebsiteController {
     constructor() {
         this.modules = {};
         this.isInitialized = false;
+        this.lastViewportWidth = window.innerWidth;
+        this.resizeTimeout = null;
+        // Bind methods to maintain context
+        this.handleViewportChange = this.handleViewportChange.bind(this);
+        this.onResize = this.onResize.bind(this);
     }
 
     async init() {
@@ -16,6 +21,9 @@ class WebsiteController {
             this.modules.animations = new AnimationController();
             this.modules.sections = new SectionController();
             this.modules.skills = new SkillsController();
+            this.modules.education = new EducationController();
+            this.modules.experience = new ExperienceController();
+            this.modules.engagement = new EngagementController();
             this.modules.ui = new UIController();
 
             // Start all modules
@@ -23,9 +31,13 @@ class WebsiteController {
                 this.modules.animations.init(),
                 this.modules.sections.init(),
                 this.modules.skills.init(),
+                this.modules.education.init(),
+                this.modules.experience.init(),
+                this.modules.engagement.init(),
                 this.modules.ui.init()
             ]);
 
+            this.initializeResponsiveHandling();
             this.isInitialized = true;
             console.log('Website initialized successfully!');
         } catch (error) {
@@ -33,7 +45,66 @@ class WebsiteController {
         }
     }
 
+    initializeResponsiveHandling() {
+        window.addEventListener('resize', this.onResize);
+    }
+
+    onResize() {
+        clearTimeout(this.resizeTimeout);
+        this.resizeTimeout = setTimeout(this.handleViewportChange, 250);
+    }
+
+    handleViewportChange() {
+        const currentWidth = window.innerWidth;
+        const widthDifference = Math.abs(currentWidth - this.lastViewportWidth);
+        
+        // If viewport width changed significantly (more than 50px), reload sections
+        if (widthDifference > 50) {
+            console.log('Significant viewport change detected, reloading sections...');
+            this.reloadSections();
+            this.lastViewportWidth = currentWidth;
+        }
+    }
+
+    async reloadSections() {
+        try {
+            // Close all expanded sections first
+            if (this.modules.sections) {
+                this.modules.sections.sections.forEach((sectionData, id) => {
+                    if (sectionData.isExpanded) {
+                        this.modules.sections.closeSection(id);
+                    }
+                });
+            }
+
+            // Wait a bit for sections to close
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Reinitialize content modules
+            const contentModules = ['skills', 'education', 'experience', 'engagement'];
+            
+            for (const moduleName of contentModules) {
+                const module = this.modules[moduleName];
+                if (module && module.init) {
+                    await module.init();
+                }
+            }
+            
+            console.log('Sections reloaded successfully');
+        } catch (error) {
+            console.error('Failed to reload sections:', error);
+        }
+    }
+
     destroy() {
+        // Clear any pending timeouts
+        if (this.resizeTimeout) {
+            clearTimeout(this.resizeTimeout);
+        }
+
+        // Remove event listeners
+        window.removeEventListener('resize', this.onResize);
+
         Object.values(this.modules).forEach(module => {
             if (module.destroy) module.destroy();
         });

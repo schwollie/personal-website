@@ -51,6 +51,11 @@ class UIController {
         this.theme = theme;
         document.documentElement.setAttribute('data-theme', theme);
         this.updateThemeIcon();
+        
+        // Update wave background theme if available
+        if (window.WaveBackground && window.WaveBackground.updateTheme) {
+            window.WaveBackground.updateTheme(theme);
+        }
     }
 
     updateThemeIcon() {

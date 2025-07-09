@@ -19,8 +19,15 @@ This website presents my educational background, work experience, technical skil
 ## Local Development
 
 1. Clone this repository
-2. Open `index.html` in your browser
-3. No build process required - it's a static site
+2.  For local development, navigate to the 
+3.  Start a local server using Python:
+    ```bash
+    python3 -m http.server 8000
+    ```
+4.  Open the site in your Chrome browser:
+    ```bash
+    google-chrome http://localhost:8000
+    ```
 
 ## Content Updates
 

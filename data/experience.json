@@ -1,0 +1,14 @@
+{
+  "experienceItems": [
+    {
+      "position": "Working Student - Software Developer",
+      "company": "Vector Informatik GmbH",
+      "startDate": "March 2022",
+      "endDate": "Present",
+      "location": "Stuttgart, Germany",
+      "description": "Working on DYNA4, developing advanced simulation software for autonomous driving testing. Contributing to core features including OpenSCENARIO and OpenDRIVE support, implementing robust C++ and Python solutions for automotive simulation environments.",
+      "technologies": ["C++", "Python", "OpenSCENARIO", "OpenDRIVE", "Automotive Simulation"],
+      "companyLogo": "images/Vector_Informatik_Logo.png"
+    }
+  ]
+}

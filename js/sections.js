@@ -170,56 +170,16 @@ class SectionController {
 
     triggerSectionAnimations(section) {
         const animators = {
-            education: () => this.animateTimeline(section),
-            experience: () => this.animateExperienceCards(section),
+            education: () => window.websiteController?.modules.education?.animateEducation(section),
+            experience: () => window.websiteController?.modules.experience?.animateExperience(section),
             skills: () => window.websiteController?.modules.skills?.animateSkills(section),
-            engagement: () => this.animateEngagementCards(section)
+            engagement: () => window.websiteController?.modules.engagement?.animateEngagement(section)
         };
 
         const animator = animators[section.id];
-        if (animator) animator();
-    }
-
-    animateTimeline(section) {
-        const items = section.querySelectorAll('.timeline-item');
-        items.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-30px)';
-            
-            setTimeout(() => {
-                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                item.style.opacity = '1';
-                item.style.transform = 'translateX(0)';
-            }, index * this.animationDelay);
-        });
-    }
-
-    animateExperienceCards(section) {
-        const cards = section.querySelectorAll('.experience-card');
-        cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.9) translateY(20px)';
-            
-            setTimeout(() => {
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'scale(1) translateY(0)';
-            }, index * 200);
-        });
-    }
-
-    animateEngagementCards(section) {
-        const cards = section.querySelectorAll('.engagement-card');
-        cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'rotateY(15deg) translateY(20px)';
-            
-            setTimeout(() => {
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'rotateY(0deg) translateY(0)';
-            }, index * this.animationDelay);
-        });
+        if (animator) {
+            animator();
+        }
     }
 
     updateUrl(sectionId) {

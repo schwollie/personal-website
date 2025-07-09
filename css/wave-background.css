@@ -1,0 +1,241 @@
+/* Wave Background Animation */
+.wave-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.wave-layer {
+    position: absolute;
+    width: 150%;
+    height: 60%;
+    opacity: 0.6;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Wave positions - top, middle, bottom without overlap */
+.wave-layer:nth-child(1) {
+    top: 0;
+    left: -25%;
+    background: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        rgba(37, 99, 235, 0.4) 50%, 
+        transparent 100%);
+    border-radius: 0 0 60% 40%;
+    animation: waveFloat1 8s infinite;
+    transform-origin: center bottom;
+}
+
+.wave-layer:nth-child(2) {
+    top: 35%;
+    right: -25%;
+    background: linear-gradient(225deg, 
+        var(--accent-color) 0%, 
+        rgba(6, 182, 212, 0.3) 50%, 
+        transparent 100%);
+    border-radius: 50% 0 50% 50%;
+    animation: waveFloat2 10s infinite;
+    transform-origin: left center;
+}
+
+.wave-layer:nth-child(3) {
+    bottom: 0;
+    left: -20%;
+    background: linear-gradient(45deg, 
+        rgba(37, 99, 235, 0.5) 0%, 
+        rgba(6, 182, 212, 0.2) 50%, 
+        transparent 100%);
+    border-radius: 70% 30% 0 0;
+    animation: waveFloat3 12s infinite;
+    transform-origin: center top;
+}
+
+.wave-layer:nth-child(4) {
+    top: 20%;
+    left: 70%;
+    width: 80%;
+    height: 40%;
+    background: linear-gradient(315deg, 
+        rgba(6, 182, 212, 0.4) 0%, 
+        rgba(37, 99, 235, 0.2) 70%, 
+        transparent 100%);
+    border-radius: 50% 80% 30% 60%;
+    animation: waveFloat4 15s infinite;
+    transform-origin: center center;
+}
+
+.wave-layer:nth-child(5) {
+    bottom: 15%;
+    right: 60%;
+    width: 70%;
+    height: 35%;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(37, 99, 235, 0.3) 30%, 
+        rgba(6, 182, 212, 0.2) 100%);
+    border-radius: 40% 60% 50% 30%;
+    animation: waveFloat5 9s infinite;
+    transform-origin: center center;
+}
+
+/* Wave animations with different patterns */
+@keyframes waveFloat1 {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) rotate(2deg) scale(1.05);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes waveFloat2 {
+    0% {
+        transform: translateX(0) rotate(0deg) scale(1);
+    }
+    30% {
+        transform: translateX(-15px) rotate(-1deg) scale(1.02);
+    }
+    70% {
+        transform: translateX(10px) rotate(1deg) scale(0.98);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes waveFloat3 {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    25% {
+        transform: translateY(-10px) translateX(15px) scale(1.03);
+    }
+    75% {
+        transform: translateY(5px) translateX(-10px) scale(0.97);
+    }
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+}
+
+@keyframes waveFloat4 {
+    0% {
+        transform: rotate(0deg) scale(1) translateY(0);
+    }
+    40% {
+        transform: rotate(3deg) scale(1.08) translateY(-25px);
+    }
+    80% {
+        transform: rotate(-2deg) scale(0.95) translateY(15px);
+    }
+    100% {
+        transform: rotate(0deg) scale(1) translateY(0);
+    }
+}
+
+@keyframes waveFloat5 {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    20% {
+        transform: translateX(20px) translateY(-15px) rotate(1deg);
+    }
+    60% {
+        transform: translateX(-15px) translateY(10px) rotate(-1deg);
+    }
+    100% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .wave-layer:nth-child(1) {
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.4) 0%, 
+        rgba(37, 99, 235, 0.2) 50%, 
+        transparent 100%);
+}
+
+[data-theme="dark"] .wave-layer:nth-child(2) {
+    background: linear-gradient(225deg, 
+        rgba(6, 182, 212, 0.3) 0%, 
+        rgba(14, 165, 233, 0.2) 50%, 
+        transparent 100%);
+}
+
+[data-theme="dark"] .wave-layer:nth-child(3) {
+    background: linear-gradient(45deg, 
+        rgba(59, 130, 246, 0.3) 0%, 
+        rgba(6, 182, 212, 0.15) 50%, 
+        transparent 100%);
+}
+
+[data-theme="dark"] .wave-layer:nth-child(4) {
+    background: linear-gradient(315deg, 
+        rgba(6, 182, 212, 0.25) 0%, 
+        rgba(59, 130, 246, 0.15) 70%, 
+        transparent 100%);
+}
+
+[data-theme="dark"] .wave-layer:nth-child(5) {
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(59, 130, 246, 0.2) 30%, 
+        rgba(6, 182, 212, 0.15) 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wave-layer {
+        width: 200%;
+        height: 50%;
+    }
+    
+    .wave-layer:nth-child(1) {
+        left: -50%;
+    }
+    
+    .wave-layer:nth-child(2) {
+        right: -50%;
+    }
+    
+    .wave-layer:nth-child(3) {
+        left: -40%;
+    }
+    
+    .wave-layer:nth-child(4) {
+        width: 120%;
+        height: 30%;
+    }
+    
+    .wave-layer:nth-child(5) {
+        width: 100%;
+        height: 25%;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .wave-layer {
+        animation: none;
+        opacity: 0.3;
+    }
+}
+
+/* Performance optimization for low-end devices */
+@media (max-width: 480px) {
+    .wave-layer:nth-child(4),
+    .wave-layer:nth-child(5) {
+        display: none;
+    }
+}

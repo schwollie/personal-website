@@ -112,6 +112,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-image-wrapper:hover {
+    transform: scale(1.05);
 }
 
 .profile-image {
@@ -172,27 +177,33 @@ body {
 .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 1rem;
     margin-top: 2rem;
 }
 
 .stat {
     text-align: center;
-    padding: 1rem;
+    padding: 0.75rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(var(--shadow-color-rgb), 0.15);
 }
 
 .stat-number {
     display: block;
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 1000;
     margin-bottom: 0.25rem;
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: 1rem;
     opacity: 0.8;
 }
 
@@ -342,6 +353,14 @@ body {
     justify-content: center;
     color: white;
     font-size: 1.5rem;
+    overflow: hidden;
+}
+
+.company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 .experience-details h3 {
@@ -381,95 +400,166 @@ body {
 /* Skills Grid */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
 .skill-category {
-    background: var(--background);
-    padding: 1.5rem;
+    background: var(--surface);
     border-radius: var(--border-radius);
-    border: 1px solid var(--border);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-category h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
     color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
 .skill-item {
-    margin-bottom: 1rem;
-    position: relative;
-    cursor: pointer;
+    margin-bottom: 1.5rem;
 }
 
-.skill-item:hover::after {
-    content: attr(data-source);
-    position: absolute;
-    top: -2rem;
-    left: 0;
-    background: var(--text-primary);
-    color: var(--background);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    z-index: 10;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+.skill-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
 }
 
 .skill-name {
-    display: block;
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.skill-level-label {
+    font-size: 0.8rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
 }
 
 .skill-level {
     background: var(--border);
-    height: 6px;
-    border-radius: 3px;
+    border-radius: 0.5rem;
+    height: 0.5rem;
     overflow: hidden;
 }
 
 .skill-bar {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    border-radius: 3px;
-    transition: width 0.6s ease;
+    border-radius: 0.5rem;
+    transition: width 0.8s ease;
+    width: 0%;
 }
 
-.language-skill {
+/* Additional Timeline Styles */
+.grade, .gpa, .status {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
+.thesis {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(var(--primary-color-rgb, 37, 99, 235), 0.1);
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+.thesis-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
-.language-skill .skill-name {
-    margin-bottom: 0;
-    flex: 0 0 auto;
-}
-
-.language-skill .skill-level {
-    flex: 1 1 auto;
-    min-width: 100px;
-    margin: 0 0.5rem;
-}
-
-.skill-level-label {
+.thesis-title {
     font-weight: 500;
-    color: var(--text-secondary);
-    background-color: var(--secondary-color);
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    flex: 1;
+}
+
+.thesis-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    background: rgba(var(--primary-color-rgb, 37, 99, 235), 0.1);
+}
+
+.thesis-link:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb, 37, 99, 235), 0.3);
+}
+
+.thesis-link i {
     font-size: 0.9rem;
-    flex: 0 0 auto;
-    white-space: nowrap;
-    border: 1px solid var(--border);
+}
+
+.thesis-grade {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Experience Card Enhancements */
+.location {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+}
+
+.achievements {
+    margin-top: 1rem;
+}
+
+.achievements p {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.achievements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.achievements li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.achievements li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Engagement Card Enhancements */
+.role {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
 }
 
 /* Engagement Grid */
@@ -566,39 +656,4 @@ body {
     opacity: 1;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .profile-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .experience-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .engagement-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer .container {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-}
+
