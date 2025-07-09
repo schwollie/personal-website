@@ -80,12 +80,6 @@ class SectionController {
         if (sectionData.isExpanded) {
             this.closeSection(sectionId);
         } else {
-            // Close other sections first
-            this.sections.forEach((data, id) => {
-                if (id !== sectionId && data.isExpanded) {
-                    this.closeSection(id);
-                }
-            });
             this.openSection(sectionId);
         }
     }
@@ -94,34 +88,53 @@ class SectionController {
         const sectionData = this.sections.get(sectionId);
         if (!sectionData || sectionData.isExpanded) return;
 
+        // Close other sections first with smooth transition
+        const openSections = [];
+        this.sections.forEach((data, id) => {
+            if (id !== sectionId && data.isExpanded) {
+                openSections.push(id);
+            }
+        });
+
+        // Close other sections smoothly
+        openSections.forEach(id => this.closeSection(id));
+
         const { element, content, header } = sectionData;
         
-        element.classList.add('expanded');
-        sectionData.isExpanded = true;
+        // Wait a bit for other sections to start closing, then open this one
+        setTimeout(() => {
+            element.classList.add('expanded');
+            sectionData.isExpanded = true;
 
-        if (content) {
-            content.style.display = 'block';
-            setTimeout(() => {
+            if (content) {
+                content.style.display = 'block';
+                content.style.maxHeight = content.scrollHeight + 'px';
                 content.style.opacity = '1';
                 content.style.transform = 'translateY(0)';
-            }, 10);
-        }
-
-        if (header) {
-            header.setAttribute('aria-expanded', 'true');
-            const icon = header.querySelector('.toggle-icon');
-            if (icon) {
-                icon.style.transform = 'rotate(180deg)';
             }
-        }
 
-        // Update URL
-        this.updateUrl(sectionId);
+            if (header) {
+                header.querySelector('.toggle-icon').classList.add('fa-chevron-up');
+                header.querySelector('.toggle-icon').classList.remove('fa-chevron-down');
+                header.setAttribute('aria-expanded', 'true');
+            }
 
-        // Trigger animations
-        setTimeout(() => {
-            this.triggerSectionAnimations(element);
-        }, 100);
+            // Update URL
+            this.updateUrl(sectionId);
+
+            // Smooth scroll to the section after content is visible
+            setTimeout(() => {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 200);
+
+            // Trigger animations
+            setTimeout(() => {
+                this.triggerSectionAnimations(element);
+            }, 300);
+        }, openSections.length > 0 ? 150 : 0);
     }
 
     closeSection(sectionId) {
@@ -136,6 +149,7 @@ class SectionController {
         if (content) {
             content.style.opacity = '0';
             content.style.transform = 'translateY(-10px)';
+            content.style.maxHeight = '0px';
             
             setTimeout(() => {
                 if (!sectionData.isExpanded) {
@@ -148,7 +162,8 @@ class SectionController {
             header.setAttribute('aria-expanded', 'false');
             const icon = header.querySelector('.toggle-icon');
             if (icon) {
-                icon.style.transform = 'rotate(0deg)';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
             }
         }
     }

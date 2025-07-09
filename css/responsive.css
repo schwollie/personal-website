@@ -2,6 +2,14 @@
 
 /* Base styles for mobile (320px and up) */
 @media (max-width: 480px) {
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
     .container {
         padding: 0 1rem;
     }
@@ -215,9 +223,9 @@
     }
 }
 
-/* Dark mode support */
+/* Dark mode support - system preference fallback */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
         --primary-color: #3b82f6;
         --secondary-color: #1e293b;
         --accent-color: #06b6d4;
@@ -228,15 +236,15 @@
         --border: #334155;
     }
     
-    .hero-section {
+    :root:not([data-theme]) .hero-section {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     }
     
-    .profile-image {
+    :root:not([data-theme]) .profile-image {
         border-color: rgba(255, 255, 255, 0.1);
     }
     
-    .footer {
+    :root:not([data-theme]) .footer {
         background: var(--surface);
         border-top: 1px solid var(--border);
     }

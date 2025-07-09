@@ -1,0 +1,88 @@
+{
+  "skillCategories": [
+    {
+      "categoryName": "Programming Languages",
+      "categoryId": "programming",
+      "skills": [
+        {
+          "name": "C++",
+          "percentage": 90,
+          "source": "University & Work at Vector Informatik",
+          "skillLevel": null
+        },
+        {
+          "name": "Java",
+          "percentage": 85,
+          "source": "University Courses",
+          "skillLevel": null
+        },
+        {
+          "name": "Python",
+          "percentage": 80,
+          "source": "University & Personal Projects",
+          "skillLevel": null
+        },
+        {
+          "name": "JavaScript",
+          "percentage": 75,
+          "source": "University & Web Development",
+          "skillLevel": null
+        }
+      ]
+    },
+    {
+      "categoryName": "Technologies & Frameworks",
+      "categoryId": "technologies",
+      "skills": [
+        {
+          "name": "OpenSCENARIO/OpenDRIVE",
+          "percentage": 85,
+          "source": "Work at Vector Informatik (DYNA4)",
+          "skillLevel": null
+        },
+        {
+          "name": "Mixed Reality",
+          "percentage": 80,
+          "source": "Bachelor Thesis Research",
+          "skillLevel": null
+        },
+        {
+          "name": "Machine Learning",
+          "percentage": 75,
+          "source": "University Courses & Projects",
+          "skillLevel": null
+        },
+        {
+          "name": "Database Systems",
+          "percentage": 70,
+          "source": "University Courses",
+          "skillLevel": null
+        },
+        {
+          "name": "Automotive Simulation",
+          "percentage": 85,
+          "source": "Work at Vector Informatik (DYNA4)",
+          "skillLevel": null
+        }
+      ]
+    },
+    {
+      "categoryName": "Languages",
+      "categoryId": "languages",
+      "skills": [
+        {
+          "name": "German",
+          "percentage": 100,
+          "source": "Native Language",
+          "skillLevel": "Native"
+        },
+        {
+          "name": "English",
+          "percentage": 90,
+          "source": "University & Professional Use",
+          "skillLevel": "C1"
+        }
+      ]
+    }
+  ]
+}

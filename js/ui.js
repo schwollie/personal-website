@@ -8,13 +8,17 @@ class UIController {
 
     async init() {
         this.initializeTheme();
+        this.initializeThemeToggle();
         this.initializeExternalLinks();
     }
 
     initializeTheme() {
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        this.setTheme(savedTheme);
+        // Check for saved theme preference or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        this.setTheme(initialTheme);
         
         // Listen for system theme changes
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -25,10 +29,42 @@ class UIController {
         });
     }
 
+    initializeThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+
+        // Set initial icon
+        this.updateThemeIcon();
+
+        themeToggle.addEventListener('click', () => {
+            this.toggleTheme();
+        });
+    }
+
+    toggleTheme() {
+        const newTheme = this.theme === 'light' ? 'dark' : 'light';
+        this.setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    }
+
     setTheme(theme) {
         this.theme = theme;
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        this.updateThemeIcon();
+    }
+
+    updateThemeIcon() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+
+        const icon = themeToggle.querySelector('i');
+        if (this.theme === 'dark') {
+            icon.className = 'fas fa-sun';
+            themeToggle.setAttribute('aria-label', 'Switch to light mode');
+        } else {
+            icon.className = 'fas fa-moon';
+            themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+        }
     }
 
     initializeExternalLinks() {

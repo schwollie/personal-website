@@ -11,22 +11,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    
     <header class="hero-section">
         <div class="container">
             <div class="hero-content">
                 <div class="profile-container">
                     <div class="profile-image-wrapper">
-                        <img src="images/profile/profile-placeholder.jpg" alt="Lars" class="profile-image">
+                        <img src="images/profile/profile-picture.jpeg" alt="Lars" class="profile-image">
                         <div class="profile-ring"></div>
                     </div>
                     <div class="hero-text">
                         <h1 class="hero-title">Hi, I'm Lars</h1>
                         <p class="hero-subtitle">Computer Science Student & Developer</p>
                         <p class="hero-description">
-                            Welcome to my personal website! I'm currently pursuing my Master's degree in Computer Science 
-                            at TUM and working as a developer at Vector Informatik. My bachelor thesis on 
+                            Welcome to my personal website! I will be starting my Master's degree in Computer Science 
+                            at TUM in summer 2025. I recently graduated with my bachelor's degree, where my thesis on 
                             "Intelligent and Automated Path-Planning with Mixed Reality for Mobile Systems within Hospital Environments" 
-                            earned a grade of 1.0, and I graduated with a 2.0 GPA.
+                            earned a grade of 1.0.
                         </p>
                         <div class="hero-stats">
                             <div class="stat">
@@ -38,8 +42,8 @@
                                 <span class="stat-label">Bachelor GPA</span>
                             </div>
                             <div class="stat">
-                                <span class="stat-number" data-duration="2000">M.Sc.</span>
-                                <span class="stat-label">Currently Pursuing</span>
+                                <span class="stat-number" data-duration="2000">2025</span>
+                                <span class="stat-label">M.Sc. Start</span>
                             </div>
                         </div>
                     </div>
@@ -58,15 +62,15 @@
                 <div class="section-content">
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-date">2021 - Present</div>
+                            <div class="timeline-date">from 2025</div>
                             <div class="timeline-content">
                                 <h3>Master of Science - Computer Science</h3>
                                 <p class="institution">Technical University of Munich (TUM)</p>
-                                <p class="description">Currently in 1st semester, focusing on advanced computer science topics including artificial intelligence, software engineering, and system design.</p>
+                                <p class="description">Starting in the summer semester 2025, focusing on advanced computer science topics including artificial intelligence, software engineering, and system design.</p>
                             </div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-date">2013 - 2021</div>
+                            <div class="timeline-date">2021 - 2024</div>
                             <div class="timeline-content">
                                 <h3>Bachelor of Science - Computer Science</h3>
                                 <p class="institution">Technical University of Munich (TUM)</p>
@@ -101,13 +105,16 @@
                                 <p class="company">Vector Informatik GmbH</p>
                                 <p class="duration">March 2022 - Present</p>
                                 <p class="description">
-                                    Developing software solutions for automotive industry, working with embedded systems 
-                                    and contributing to innovative projects in the automotive technology sector.
+                                    Working on DYNA4, developing advanced simulation software for autonomous driving testing. 
+                                    Contributing to core features including OpenSCENARIO and OpenDRIVE support, implementing 
+                                    robust C++ and Python solutions for automotive simulation environments.
                                 </p>
                                 <div class="skills-used">
                                     <span class="skill-tag">C++</span>
-                                    <span class="skill-tag">Embedded Systems</span>
-                                    <span class="skill-tag">Automotive</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">OpenSCENARIO</span>
+                                    <span class="skill-tag">OpenDRIVE</span>
+                                    <span class="skill-tag">Automotive Simulation</span>
                                 </div>
                             </div>
                         </div>
@@ -121,84 +128,8 @@
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="section-content">
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>Programming Languages</h3>
-                            <div class="skills-list">
-                                <div class="skill-item" data-source="University & Work">
-                                    <span class="skill-name">C++</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item" data-source="University">
-                                    <span class="skill-name">Java</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item" data-source="University & Personal Projects">
-                                    <span class="skill-name">Python</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 80%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item" data-source="University">
-                                    <span class="skill-name">JavaScript</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 75%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h3>Technologies & Frameworks</h3>
-                            <div class="skills-list">
-                                <div class="skill-item" data-source="Work at Vector Informatik">
-                                    <span class="skill-name">Embedded Systems</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item" data-source="Bachelor Thesis">
-                                    <span class="skill-name">Mixed Reality</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 80%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item" data-source="University Projects">
-                                    <span class="skill-name">Machine Learning</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 75%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item" data-source="University">
-                                    <span class="skill-name">Database Systems</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 70%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h3>Languages</h3>
-                            <div class="skills-list">
-                                <div class="skill-item" data-source="Native">
-                                    <span class="skill-name">German</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item" data-source="University & Work">
-                                    <span class="skill-name">English</span>
-                                    <div class="skill-level">
-                                        <div class="skill-bar" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="skills-grid" id="skills-container">
+                        <!-- Skills will be dynamically loaded from skills.json -->
                     </div>
                 </div>
             </section>

@@ -43,73 +43,16 @@
       "startDate": "March 2022",
       "endDate": "Present",
       "location": "Stuttgart, Germany",
-      "description": "Developing software solutions for automotive industry, working with embedded systems and contributing to innovative projects in the automotive technology sector.",
-      "technologies": ["C++", "Embedded Systems", "Automotive Software", "Real-time Systems"],
+      "description": "Working on DYNA4, developing advanced simulation software for autonomous driving testing. Contributing to core features including OpenSCENARIO and OpenDRIVE support, implementing robust C++ and Python solutions for automotive simulation environments.",
+      "technologies": ["C++", "Python", "OpenSCENARIO", "OpenDRIVE", "Automotive Simulation"],
       "achievements": [
         "Contributed to automotive software development projects",
-        "Implemented embedded system solutions",
+        "Working on DYNA4 simulation environment development",
+        "Implemented OpenSCENARIO and OpenDRIVE support",
         "Collaborated with cross-functional teams"
       ]
     }
   ],
-  "skills": {
-    "programming": [
-      {
-        "name": "C++",
-        "level": 90,
-        "source": "University & Work at Vector Informatik"
-      },
-      {
-        "name": "Java", 
-        "level": 85,
-        "source": "University Courses"
-      },
-      {
-        "name": "Python",
-        "level": 80,
-        "source": "University & Personal Projects"
-      },
-      {
-        "name": "JavaScript",
-        "level": 75,
-        "source": "University & Web Development"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Embedded Systems",
-        "level": 85,
-        "source": "Work at Vector Informatik"
-      },
-      {
-        "name": "Mixed Reality",
-        "level": 80,
-        "source": "Bachelor Thesis Research"
-      },
-      {
-        "name": "Machine Learning",
-        "level": 75,
-        "source": "University Courses & Projects"
-      },
-      {
-        "name": "Database Systems",
-        "level": 70,
-        "source": "University Courses"
-      }
-    ],
-    "languages": [
-      {
-        "name": "German",
-        "level": 100,
-        "source": "Native Language"
-      },
-      {
-        "name": "English",
-        "level": 90,
-        "source": "University & Professional Use"
-      }
-    ]
-  },
   "engagement": [
     {
       "organization": "LYMINA Band",
