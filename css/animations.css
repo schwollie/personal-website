@@ -47,8 +47,25 @@
     }
 }
 
-/* Fixed entrance animations - prevent jumping */
-.hero-section * {
+/* Wave background should always be visible - exclude from entrance animations */
+.wave-background {
+    opacity: 1 !important;
+}
+
+.wave-layer {
+    opacity: 0.8 !important;
+}
+
+/*
+ * Hero Section Entrance Animations
+ * Animate specific elements instead of using a broad selector
+ * to ensure the wave background is never accidentally hidden.
+ */
+.profile-image-wrapper,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.hero-stats {
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
 }

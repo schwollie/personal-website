@@ -14,11 +14,12 @@ class WaveBackgroundController {
     /**
      * Initialize the wave background
      * @param {string|HTMLElement} targetSelector - CSS selector or DOM element where waves should be added
+     * @returns {boolean} - True if initialization was successful
      */
     init(targetSelector = '.hero-section') {
         if (this.isInitialized) {
             console.warn('Wave background already initialized');
-            return;
+            return true;
         }
 
         const target = typeof targetSelector === 'string' 
@@ -27,15 +28,22 @@ class WaveBackgroundController {
 
         if (!target) {
             console.error('Wave background target not found:', targetSelector);
-            return;
+            return false;
         }
 
-        this.createWaveBackground(target);
-        this.setupIntersectionObserver();
-        this.setupResponsiveHandling();
-        this.isInitialized = true;
+        try {
+            this.createWaveBackground(target);
+            this.setupIntersectionObserver();
+            this.setupResponsiveHandling();
+            this.isInitialized = true;
 
-        console.log('Wave background initialized successfully');
+            console.log('Wave background initialized successfully');
+            return true;
+        } catch (error) {
+            console.error('Failed to initialize wave background:', error);
+            return false;
+        }
+        
     }
 
     /**
@@ -43,13 +51,10 @@ class WaveBackgroundController {
      * @param {HTMLElement} target - Target element to add waves to
      */
     createWaveBackground(target) {
-        // Ensure target has relative positioning
-        const targetStyle = window.getComputedStyle(target);
-        if (targetStyle.position === 'static') {
-            target.style.position = 'relative';
+        if (this.waveContainer) {
+            this.waveContainer.remove();
         }
 
-        // Create wave container
         this.waveContainer = document.createElement('div');
         this.waveContainer.className = 'wave-background';
         this.waveContainer.setAttribute('aria-hidden', 'true');
@@ -64,6 +69,11 @@ class WaveBackgroundController {
 
         // Insert at the beginning of target to ensure it's behind content
         target.insertBefore(this.waveContainer, target.firstChild);
+        
+        // Force visibility immediately after creation
+        this.waveContainer.style.opacity = '1';
+        
+        console.log('Wave background created with', this.waveContainer.children.length, 'layers');
     }
 
     /**
@@ -204,20 +214,119 @@ class WaveBackgroundController {
             this.init(targetSelector);
         }, 100);
     }
+
+    /**
+     * Wait for hero content to be ready before initializing waves
+     * @param {string|HTMLElement} targetSelector - Target for wave background
+     * @param {number} maxRetries - Maximum number of retry attempts
+     * @returns {Promise<boolean>} - Promise resolving to initialization success
+     */
+    async waitForHeroAndInit(targetSelector = '.hero-section', maxRetries = 20) {
+        if (this.isInitialized) {
+            return true;
+        }
+
+        for (let attempt = 0; attempt < maxRetries; attempt++) {
+            const target = typeof targetSelector === 'string' 
+                ? document.querySelector(targetSelector) 
+                : targetSelector;
+
+            if (target) {
+                // Check if hero has some content (not just empty)
+                const heroContent = target.querySelector('.hero-content, .profile-container, .hero-title');
+                if (heroContent) {
+                    console.log(`Hero content ready after ${attempt + 1} attempts, initializing waves`);
+                    return this.init(targetSelector);
+                }
+            }
+
+            // Wait before next attempt
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+
+        console.warn('Hero content not ready after maximum retries, initializing waves anyway');
+        return this.init(targetSelector);
+    }
+
+    /**
+     * Verify and fix wave background visibility
+     */
+    verifyAndFixVisibility() {
+        if (!this.waveContainer) {
+            console.warn('Wave container not found, attempting re-initialization');
+            this.isInitialized = false;
+            this.init('.hero-section');
+            return;
+        }
+
+        // Ensure wave container is visible
+        if (this.waveContainer.style.display === 'none') {
+            console.log('Wave container was hidden, making it visible');
+            this.waveContainer.style.display = '';
+        }
+
+        // Ensure opacity is correct
+        if (this.waveContainer.style.opacity === '0') {
+            console.log('Wave container opacity was 0, setting to 1');
+            this.waveContainer.style.opacity = '1';
+        }
+
+        // Check if waves are actually in the DOM
+        const parent = this.waveContainer.parentElement;
+        if (!parent) {
+            console.warn('Wave container is detached from DOM, re-appending');
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.insertBefore(this.waveContainer, heroSection.firstChild);
+            }
+        }
+    }
 }
 
 // Create global instance
 window.WaveBackground = new WaveBackgroundController();
 
-// Auto-initialize if DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+// Multiple initialization strategies to ensure waves always appear
+async function initializeWaveBackground() {
+    // Use the robust initialization method that waits for hero content
+    const success = await window.WaveBackground.waitForHeroAndInit('.hero-section');
+    
+    if (!success) {
+        console.warn('Wave background initialization failed, attempting fallback');
+        // Fallback to immediate initialization
         window.WaveBackground.init('.hero-section');
-    });
+    }
+}
+
+// Initialize based on document state
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWaveBackground);
 } else {
     // DOM is already loaded
-    window.WaveBackground.init('.hero-section');
+    initializeWaveBackground();
 }
+
+// Fallback initialization on window load (in case anything failed)
+window.addEventListener('load', async () => {
+    if (!window.WaveBackground.isInitialized) {
+        console.log('Fallback wave background initialization on window load');
+        await initializeWaveBackground();
+    }
+    
+    // Additional check after a short delay to ensure visibility
+    setTimeout(() => {
+        if (window.WaveBackground.isInitialized) {
+            window.WaveBackground.verifyAndFixVisibility();
+        }
+    }, 1000);
+});
+
+// Periodic check to ensure waves stay visible (every 5 seconds)
+setInterval(() => {
+    if (window.WaveBackground && window.WaveBackground.isInitialized) {
+        window.WaveBackground.verifyAndFixVisibility();
+    }
+}, 5000);
 
 // Export for module systems
 if (typeof module !== 'undefined' && module.exports) {

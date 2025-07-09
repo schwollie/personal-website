@@ -147,10 +147,8 @@ const Utils = {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        window.websiteController = new WebsiteController();
-        window.websiteController.init();
-    }, 100);
+    window.websiteController = new WebsiteController();
+    window.websiteController.init();
 });
 
 // Performance monitoring

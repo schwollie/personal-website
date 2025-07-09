@@ -8,13 +8,14 @@
     overflow: hidden;
     z-index: -1;
     pointer-events: none;
+    opacity: 1;
 }
 
 .wave-layer {
     position: absolute;
-    width: 150%;
-    height: 60%;
-    opacity: 0.6;
+    width: min(120vw, 1800px);
+    height: min(60vh, 600px);
+    opacity: 0.8;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -23,63 +24,68 @@
 /* Wave positions - top, middle, bottom without overlap */
 .wave-layer:nth-child(1) {
     top: 0;
-    left: -25%;
-    background: linear-gradient(135deg, 
-        var(--primary-color) 0%, 
-        rgba(37, 99, 235, 0.4) 50%, 
-        transparent 100%);
+    left: min(-25vw, -300px);
+    background: radial-gradient(circle at 20% 20%, 
+        rgba(37, 99, 235, 0.15) 0%, 
+        rgba(37, 99, 235, 0.1) 40%, 
+        rgba(6, 182, 212, 0.05) 80%,
+        rgba(6, 182, 212, 0.0) 100%);
     border-radius: 0 0 60% 40%;
     animation: waveFloat1 8s infinite;
     transform-origin: center bottom;
 }
 
 .wave-layer:nth-child(2) {
-    top: 35%;
-    right: -25%;
+    top: min(35vh, 350px);
+    right: min(-25vw, -300px);
     background: linear-gradient(225deg, 
-        var(--accent-color) 0%, 
-        rgba(6, 182, 212, 0.3) 50%, 
-        transparent 100%);
+        rgba(6, 182, 212, 0.15) 0%, 
+        rgba(30, 150, 200, 0.1) 30%,
+        rgba(37, 99, 235, 0.05) 70%, 
+        rgba(37, 99, 235, 0.0) 100%);
     border-radius: 50% 0 50% 50%;
     animation: waveFloat2 10s infinite;
     transform-origin: left center;
 }
 
 .wave-layer:nth-child(3) {
-    bottom: 0;
-    left: -20%;
+    bottom: -5px;
+    left: min(-20vw, -250px);
     background: linear-gradient(45deg, 
-        rgba(37, 99, 235, 0.5) 0%, 
-        rgba(6, 182, 212, 0.2) 50%, 
-        transparent 100%);
-    border-radius: 70% 30% 0 0;
+        rgba(37, 99, 235, 0.15) 0%, 
+        rgba(6, 182, 212, 0.1) 50%, 
+        rgba(37, 99, 235, 0.05) 80%,
+        rgba(6, 182, 212, 0.0) 100%);
+    border-radius: 60% 40% 0 0;
     animation: waveFloat3 12s infinite;
     transform-origin: center top;
 }
 
 .wave-layer:nth-child(4) {
-    top: 20%;
-    left: 70%;
-    width: 80%;
-    height: 40%;
-    background: linear-gradient(315deg, 
-        rgba(6, 182, 212, 0.4) 0%, 
-        rgba(37, 99, 235, 0.2) 70%, 
-        transparent 100%);
+    top: min(20vh, 200px);
+    left: min(70vw, 1200px);
+    width: min(80vw, 1200px);
+    height: min(40vh, 400px);
+    background: radial-gradient(ellipse at center, 
+        rgba(6, 182, 212, 0.1) 0%, 
+        rgba(37, 99, 235, 0.08) 60%, 
+        rgba(6, 182, 212, 0.05) 90%,
+        rgba(37, 99, 235, 0.0) 100%);
     border-radius: 50% 80% 30% 60%;
     animation: waveFloat4 15s infinite;
     transform-origin: center center;
 }
 
 .wave-layer:nth-child(5) {
-    bottom: 15%;
-    right: 60%;
-    width: 70%;
-    height: 35%;
+    bottom: min(15vh, 150px);
+    right: min(60vw, 800px);
+    width: min(70vw, 1000px);
+    height: min(35vh, 350px);
     background: linear-gradient(180deg, 
-        transparent 0%, 
-        rgba(37, 99, 235, 0.3) 30%, 
-        rgba(6, 182, 212, 0.2) 100%);
+        rgba(37, 99, 235, 0.05) 0%, 
+        rgba(37, 99, 235, 0.1) 40%, 
+        rgba(6, 182, 212, 0.1) 70%,
+        rgba(6, 182, 212, 0.0) 100%);
     border-radius: 40% 60% 50% 30%;
     animation: waveFloat5 9s infinite;
     transform-origin: center center;
@@ -160,67 +166,70 @@
 
 /* Dark theme adjustments */
 [data-theme="dark"] .wave-layer:nth-child(1) {
-    background: linear-gradient(135deg, 
-        rgba(59, 130, 246, 0.4) 0%, 
-        rgba(37, 99, 235, 0.2) 50%, 
-        transparent 100%);
+    background: radial-gradient(circle at 20% 20%, 
+        rgba(59, 130, 246, 0.7) 0%, 
+        rgba(37, 99, 235, 0.5) 40%, 
+        rgba(14, 165, 233, 0.3) 80%,
+        rgba(14, 165, 233, 0.1) 100%);
 }
 
 [data-theme="dark"] .wave-layer:nth-child(2) {
     background: linear-gradient(225deg, 
-        rgba(6, 182, 212, 0.3) 0%, 
-        rgba(14, 165, 233, 0.2) 50%, 
-        transparent 100%);
+        rgba(6, 182, 212, 0.6) 0%, 
+        rgba(14, 165, 233, 0.4) 50%, 
+        rgba(6, 182, 212, 0.2) 100%);
 }
 
 [data-theme="dark"] .wave-layer:nth-child(3) {
     background: linear-gradient(45deg, 
-        rgba(59, 130, 246, 0.3) 0%, 
-        rgba(6, 182, 212, 0.15) 50%, 
-        transparent 100%);
+        rgba(59, 130, 246, 0.6) 0%, 
+        rgba(14, 165, 233, 0.4) 50%, 
+        rgba(59, 130, 246, 0.2) 100%);
 }
 
 [data-theme="dark"] .wave-layer:nth-child(4) {
-    background: linear-gradient(315deg, 
-        rgba(6, 182, 212, 0.25) 0%, 
-        rgba(59, 130, 246, 0.15) 70%, 
-        transparent 100%);
+    background: radial-gradient(ellipse at center, 
+        rgba(6, 182, 212, 0.5) 0%, 
+        rgba(59, 130, 246, 0.3) 60%, 
+        rgba(14, 165, 233, 0.1) 90%,
+        rgba(59, 130, 246, 0.0) 100%);
 }
 
 [data-theme="dark"] .wave-layer:nth-child(5) {
     background: linear-gradient(180deg, 
-        transparent 0%, 
-        rgba(59, 130, 246, 0.2) 30%, 
-        rgba(6, 182, 212, 0.15) 100%);
+        rgba(59, 130, 246, 0.2) 0%, 
+        rgba(37, 99, 235, 0.4) 40%, 
+        rgba(14, 165, 233, 0.3) 70%,
+        rgba(6, 182, 212, 0.1) 100%);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .wave-layer {
-        width: 200%;
-        height: 50%;
+        width: min(150vw, 1000px);
+        height: min(50vh, 400px);
     }
     
     .wave-layer:nth-child(1) {
-        left: -50%;
+        left: min(-50vw, -400px);
     }
     
     .wave-layer:nth-child(2) {
-        right: -50%;
+        right: min(-50vw, -400px);
     }
     
     .wave-layer:nth-child(3) {
-        left: -40%;
+        left: min(-40vw, -320px);
     }
     
     .wave-layer:nth-child(4) {
-        width: 120%;
-        height: 30%;
+        width: min(120vw, 800px);
+        height: min(30vh, 240px);
     }
     
     .wave-layer:nth-child(5) {
-        width: 100%;
-        height: 25%;
+        width: min(100vw, 600px);
+        height: min(25vh, 200px);
     }
 }
 
