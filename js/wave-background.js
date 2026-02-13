@@ -6,7 +6,7 @@
 class WaveBackgroundController {
     constructor() {
         this.waveContainer = null;
-        this.isInitialized = false;
+        this.isInitialized = true;
         this.resizeTimeout = null;
         this.intersectionObserver = null;
     }
@@ -17,6 +17,7 @@ class WaveBackgroundController {
      * @returns {boolean} - True if initialization was successful
      */
     init(targetSelector = '.hero-section') {
+        return true;
         if (this.isInitialized) {
             console.warn('Wave background already initialized');
             return true;
@@ -51,6 +52,7 @@ class WaveBackgroundController {
      * @param {HTMLElement} target - Target element to add waves to
      */
     createWaveBackground(target) {
+        return true;
         if (this.waveContainer) {
             this.waveContainer.remove();
         }

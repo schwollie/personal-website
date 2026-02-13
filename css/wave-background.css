@@ -1,4 +1,4 @@
-/* Wave Background Animation */
+/* Ambient Background - Subtle Gradient Mesh */
 .wave-background {
     position: absolute;
     top: 0;
@@ -11,225 +11,95 @@
     opacity: 1;
 }
 
+/* Soft gradient orbs - minimal animation */
 .wave-layer {
     position: absolute;
-    width: min(120vw, 1800px);
-    height: min(60vh, 600px);
-    opacity: 0.8;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
 }
 
-/* Wave positions - top, middle, bottom without overlap */
+/* Top-left orb - blue */
 .wave-layer:nth-child(1) {
-    top: 0;
-    left: min(-25vw, -300px);
-    background: radial-gradient(circle at 20% 20%, 
-        rgba(37, 99, 235, 0.15) 0%, 
-        rgba(37, 99, 235, 0.1) 40%, 
-        rgba(6, 182, 212, 0.05) 80%,
-        rgba(6, 182, 212, 0.0) 100%);
-    border-radius: 0 0 60% 40%;
-    animation: waveFloat1 8s infinite;
-    transform-origin: center bottom;
+    top: -10%;
+    left: -5%;
+    width: min(50vw, 500px);
+    height: min(50vw, 500px);
+    background: rgba(37, 99, 235, 0.3);
+    animation: gentlePulse 20s ease-in-out infinite;
 }
 
+/* Bottom-right orb - cyan */
 .wave-layer:nth-child(2) {
-    top: min(35vh, 350px);
-    right: min(-25vw, -300px);
-    background: linear-gradient(225deg, 
-        rgba(6, 182, 212, 0.15) 0%, 
-        rgba(30, 150, 200, 0.1) 30%,
-        rgba(37, 99, 235, 0.05) 70%, 
-        rgba(37, 99, 235, 0.0) 100%);
-    border-radius: 50% 0 50% 50%;
-    animation: waveFloat2 10s infinite;
-    transform-origin: left center;
+    bottom: -15%;
+    right: -10%;
+    width: min(60vw, 600px);
+    height: min(60vw, 600px);
+    background: rgba(6, 182, 212, 0.25);
+    animation: gentlePulse 25s ease-in-out infinite;
+    animation-delay: -10s;
 }
 
+/* Center-right accent - subtle */
 .wave-layer:nth-child(3) {
-    bottom: -5px;
-    left: min(-20vw, -250px);
-    background: linear-gradient(45deg, 
-        rgba(37, 99, 235, 0.15) 0%, 
-        rgba(6, 182, 212, 0.1) 50%, 
-        rgba(37, 99, 235, 0.05) 80%,
-        rgba(6, 182, 212, 0.0) 100%);
-    border-radius: 60% 40% 0 0;
-    animation: waveFloat3 12s infinite;
-    transform-origin: center top;
+    top: 30%;
+    right: 10%;
+    width: min(30vw, 300px);
+    height: min(30vw, 300px);
+    background: rgba(37, 99, 235, 0.15);
+    animation: gentlePulse 18s ease-in-out infinite;
+    animation-delay: -5s;
 }
 
-.wave-layer:nth-child(4) {
-    top: min(20vh, 200px);
-    left: min(70vw, 1200px);
-    width: min(80vw, 1200px);
-    height: min(40vh, 400px);
-    background: radial-gradient(ellipse at center, 
-        rgba(6, 182, 212, 0.1) 0%, 
-        rgba(37, 99, 235, 0.08) 60%, 
-        rgba(6, 182, 212, 0.05) 90%,
-        rgba(37, 99, 235, 0.0) 100%);
-    border-radius: 50% 80% 30% 60%;
-    animation: waveFloat4 15s infinite;
-    transform-origin: center center;
-}
-
+/* Hide extra layers - only need 3 orbs */
+.wave-layer:nth-child(4),
 .wave-layer:nth-child(5) {
-    bottom: min(15vh, 150px);
-    right: min(60vw, 800px);
-    width: min(70vw, 1000px);
-    height: min(35vh, 350px);
-    background: linear-gradient(180deg, 
-        rgba(37, 99, 235, 0.05) 0%, 
-        rgba(37, 99, 235, 0.1) 40%, 
-        rgba(6, 182, 212, 0.1) 70%,
-        rgba(6, 182, 212, 0.0) 100%);
-    border-radius: 40% 60% 50% 30%;
-    animation: waveFloat5 9s infinite;
-    transform-origin: center center;
+    display: none;
 }
 
-/* Wave animations with different patterns */
-@keyframes waveFloat1 {
-    0% {
-        transform: translateY(0) rotate(0deg) scale(1);
+/* Single subtle animation - gentle breathing effect */
+@keyframes gentlePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.4;
     }
     50% {
-        transform: translateY(-20px) rotate(2deg) scale(1.05);
-    }
-    100% {
-        transform: translateY(0) rotate(0deg) scale(1);
+        transform: scale(1.05);
+        opacity: 0.5;
     }
 }
 
-@keyframes waveFloat2 {
-    0% {
-        transform: translateX(0) rotate(0deg) scale(1);
-    }
-    30% {
-        transform: translateX(-15px) rotate(-1deg) scale(1.02);
-    }
-    70% {
-        transform: translateX(10px) rotate(1deg) scale(0.98);
-    }
-    100% {
-        transform: translateX(0) rotate(0deg) scale(1);
-    }
-}
-
-@keyframes waveFloat3 {
-    0% {
-        transform: translateY(0) translateX(0) scale(1);
-    }
-    25% {
-        transform: translateY(-10px) translateX(15px) scale(1.03);
-    }
-    75% {
-        transform: translateY(5px) translateX(-10px) scale(0.97);
-    }
-    100% {
-        transform: translateY(0) translateX(0) scale(1);
-    }
-}
-
-@keyframes waveFloat4 {
-    0% {
-        transform: rotate(0deg) scale(1) translateY(0);
-    }
-    40% {
-        transform: rotate(3deg) scale(1.08) translateY(-25px);
-    }
-    80% {
-        transform: rotate(-2deg) scale(0.95) translateY(15px);
-    }
-    100% {
-        transform: rotate(0deg) scale(1) translateY(0);
-    }
-}
-
-@keyframes waveFloat5 {
-    0% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-    }
-    20% {
-        transform: translateX(20px) translateY(-15px) rotate(1deg);
-    }
-    60% {
-        transform: translateX(-15px) translateY(10px) rotate(-1deg);
-    }
-    100% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-    }
-}
-
-/* Dark theme adjustments */
+/* Dark theme adjustments - brighter orbs for dark background */
 [data-theme="dark"] .wave-layer:nth-child(1) {
-    background: radial-gradient(circle at 20% 20%, 
-        rgba(59, 130, 246, 0.7) 0%, 
-        rgba(37, 99, 235, 0.5) 40%, 
-        rgba(14, 165, 233, 0.3) 80%,
-        rgba(14, 165, 233, 0.1) 100%);
+    background: rgba(59, 130, 246, 0.5);
+    opacity: 0.6;
 }
 
 [data-theme="dark"] .wave-layer:nth-child(2) {
-    background: linear-gradient(225deg, 
-        rgba(6, 182, 212, 0.6) 0%, 
-        rgba(14, 165, 233, 0.4) 50%, 
-        rgba(6, 182, 212, 0.2) 100%);
+    background: rgba(14, 165, 233, 0.4);
+    opacity: 0.5;
 }
 
 [data-theme="dark"] .wave-layer:nth-child(3) {
-    background: linear-gradient(45deg, 
-        rgba(59, 130, 246, 0.6) 0%, 
-        rgba(14, 165, 233, 0.4) 50%, 
-        rgba(59, 130, 246, 0.2) 100%);
-}
-
-[data-theme="dark"] .wave-layer:nth-child(4) {
-    background: radial-gradient(ellipse at center, 
-        rgba(6, 182, 212, 0.5) 0%, 
-        rgba(59, 130, 246, 0.3) 60%, 
-        rgba(14, 165, 233, 0.1) 90%,
-        rgba(59, 130, 246, 0.0) 100%);
-}
-
-[data-theme="dark"] .wave-layer:nth-child(5) {
-    background: linear-gradient(180deg, 
-        rgba(59, 130, 246, 0.2) 0%, 
-        rgba(37, 99, 235, 0.4) 40%, 
-        rgba(14, 165, 233, 0.3) 70%,
-        rgba(6, 182, 212, 0.1) 100%);
+    background: rgba(59, 130, 246, 0.3);
+    opacity: 0.4;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .wave-layer {
-        width: min(150vw, 1000px);
-        height: min(50vh, 400px);
-    }
-    
     .wave-layer:nth-child(1) {
-        left: min(-50vw, -400px);
+        width: min(60vw, 400px);
+        height: min(60vw, 400px);
     }
     
     .wave-layer:nth-child(2) {
-        right: min(-50vw, -400px);
+        width: min(70vw, 450px);
+        height: min(70vw, 450px);
     }
     
     .wave-layer:nth-child(3) {
-        left: min(-40vw, -320px);
-    }
-    
-    .wave-layer:nth-child(4) {
-        width: min(120vw, 800px);
-        height: min(30vh, 240px);
-    }
-    
-    .wave-layer:nth-child(5) {
-        width: min(100vw, 600px);
-        height: min(25vh, 200px);
+        width: min(40vw, 250px);
+        height: min(40vw, 250px);
     }
 }
 
@@ -237,14 +107,5 @@
 @media (prefers-reduced-motion: reduce) {
     .wave-layer {
         animation: none;
-        opacity: 0.3;
-    }
-}
-
-/* Performance optimization for low-end devices */
-@media (max-width: 480px) {
-    .wave-layer:nth-child(4),
-    .wave-layer:nth-child(5) {
-        display: none;
     }
 }

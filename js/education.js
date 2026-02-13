@@ -6,6 +6,37 @@ class EducationController {
         this.educationData = null;
     }
 
+    /**
+     * Calculate current semester based on start date (April 1st = new semester every 6 months)
+     * @param {number} startYear - Year when studies started
+     * @param {number} startMonth - Month when studies started (1-12)
+     * @returns {string} Formatted semester string (e.g., "2nd Semester")
+     */
+    calculateSemester(startYear, startMonth) {
+        const now = new Date();
+        const startDate = new Date(startYear, startMonth - 1, 1); // Month is 0-indexed
+        
+        // Calculate months elapsed
+        const monthsElapsed = (now.getFullYear() - startDate.getFullYear()) * 12 
+                            + (now.getMonth() - startDate.getMonth());
+        
+        // Each semester is 6 months, starting from April 1st
+        const semester = Math.floor(monthsElapsed / 6) + 1;
+        
+        // Format with ordinal suffix
+        const ordinal = this.getOrdinalSuffix(semester);
+        return `${semester}${ordinal} Semester`;
+    }
+
+    /**
+     * Get ordinal suffix for a number (1st, 2nd, 3rd, etc.)
+     */
+    getOrdinalSuffix(n) {
+        const s = ['th', 'st', 'nd', 'rd'];
+        const v = n % 100;
+        return s[(v - 20) % 10] || s[v] || s[0];
+    }
+
     async init() {
         console.log('EducationController initializing...');
         await this.loadEducationData();
@@ -97,7 +128,13 @@ class EducationController {
             timelineContent.appendChild(gpa);
         }
 
-        if (item.status) {
+        // Calculate semester dynamically if semesterStartYear is provided
+        if (item.semesterStartYear && item.semesterStartMonth) {
+            const status = document.createElement('p');
+            status.className = 'status';
+            status.textContent = this.calculateSemester(item.semesterStartYear, item.semesterStartMonth);
+            timelineContent.appendChild(status);
+        } else if (item.status) {
             const status = document.createElement('p');
             status.className = 'status';
             status.textContent = item.status;

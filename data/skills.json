@@ -12,19 +12,25 @@
         },
         {
           "name": "Java",
-          "percentage": 85,
-          "source": "University Courses",
+          "percentage": 80,
+          "source": "University Courses & Personal Projects",
+          "skillLevel": null
+        },
+        {
+          "name": "C# & Unity",
+          "percentage": 80,
+          "source": "Bachelor Thesis Research",
           "skillLevel": null
         },
         {
           "name": "Python",
-          "percentage": 80,
+          "percentage": 85,
           "source": "University & Personal Projects",
           "skillLevel": null
         },
         {
           "name": "JavaScript",
-          "percentage": 75,
+          "percentage": 55,
           "source": "University & Web Development",
           "skillLevel": null
         }
@@ -37,31 +43,31 @@
         {
           "name": "OpenSCENARIO/OpenDRIVE",
           "percentage": 85,
-          "source": "Work at Vector Informatik (DYNA4)",
+          "source": "Work at Vector Informatik",
           "skillLevel": null
         },
         {
-          "name": "Mixed Reality",
+          "name": "Mixed Reality in Unity",
           "percentage": 80,
-          "source": "Bachelor Thesis Research",
+          "source": "Bachelor Thesis Research & student project",
           "skillLevel": null
         },
         {
           "name": "Machine Learning",
           "percentage": 75,
-          "source": "University Courses & Projects",
+          "source": "University Courses",
           "skillLevel": null
         },
         {
-          "name": "Database Systems",
-          "percentage": 70,
-          "source": "University Courses",
+          "name": "AI with focus on Deep Learning",
+          "percentage": 80,
+          "source": "University Courses & Personal Projects",
           "skillLevel": null
         },
         {
           "name": "Automotive Simulation",
           "percentage": 85,
-          "source": "Work at Vector Informatik (DYNA4)",
+          "source": "Work at Vector Informatik",
           "skillLevel": null
         }
       ]
@@ -79,8 +85,14 @@
         {
           "name": "English",
           "percentage": 90,
-          "source": "University & Professional Use",
+          "source": "University, School & Professional Use",
           "skillLevel": "C1"
+        },
+        {
+          "name": "Spanish",
+          "percentage": 15,
+          "source": "University",
+          "skillLevel": "A1"
         }
       ]
     }

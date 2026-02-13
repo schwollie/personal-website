@@ -5,7 +5,8 @@
       "institution": "Technical University of Munich (TUM)",
       "startDate": "2025",
       "endDate": "Present",
-      "status": "1st Semester",
+      "semesterStartYear": 2025,
+      "semesterStartMonth": 4,
       "description": "Focusing on advanced computer science topics including artificial intelligence, virtual reality, software engineering, and system design.",
       "grade": null,
       "thesis": null

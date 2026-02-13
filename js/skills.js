@@ -127,6 +127,14 @@ class SkillsController {
         levelDiv.appendChild(barDiv);
         skillDiv.appendChild(levelDiv);
 
+        // Add source label below skill bar
+        if (skill.source) {
+            const sourceSpan = document.createElement('span');
+            sourceSpan.className = 'skill-source';
+            sourceSpan.textContent = skill.source;
+            skillDiv.appendChild(sourceSpan);
+        }
+
         return skillDiv;
     }
 

@@ -7,6 +7,11 @@
     }
 }
 
+/* Profile ring - single rotation on load */
+.profile-ring {
+    animation: rotate 2s ease-out forwards !important;
+}
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
