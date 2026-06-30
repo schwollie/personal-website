@@ -43,15 +43,6 @@
     }
 }
 
-@keyframes skillBarFill {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: var(--target-width);
-    }
-}
-
 /* Wave background should always be visible - exclude from entrance animations */
 .wave-background {
     opacity: 1 !important;
@@ -135,13 +126,16 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Skill bar animations - prevent layout shift */
+/* Skill item entrance animations */
 .skill-item {
-    opacity: 1;
+    opacity: 0;
+    transform: translateY(8px);
 }
 
-.skill-item.animate .skill-bar {
-    animation: skillBarFill 1s ease forwards;
+.skill-item--visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* Button and link animations */
@@ -271,5 +265,10 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+
+    .skill-item {
+        opacity: 1;
+        transform: none;
     }
 }

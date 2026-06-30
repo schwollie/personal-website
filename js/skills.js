@@ -1,5 +1,5 @@
 /**
- * Skills controller for skill bars and tooltips
+ * Skills controller for skill items and tooltips
  */
 class SkillsController {
     constructor() {
@@ -81,8 +81,7 @@ class SkillsController {
         const skillsList = document.createElement('div');
         skillsList.className = 'skills-list';
 
-        // Sort skills by percentage (descending)
-        const sortedSkills = [...category.skills].sort((a, b) => b.percentage - a.percentage);
+        const sortedSkills = [...category.skills];
 
         sortedSkills.forEach(skill => {
             const skillElement = this.createSkillItem(skill, category.categoryId);
@@ -117,17 +116,7 @@ class SkillsController {
         
         skillDiv.appendChild(skillHeaderDiv);
 
-        const levelDiv = document.createElement('div');
-        levelDiv.className = 'skill-level';
-        
-        const barDiv = document.createElement('div');
-        barDiv.className = 'skill-bar';
-        barDiv.style.width = '0%';
-        barDiv.setAttribute('data-percentage', skill.percentage);
-        levelDiv.appendChild(barDiv);
-        skillDiv.appendChild(levelDiv);
-
-        // Add source label below skill bar
+        // Add source label below skill name
         if (skill.source) {
             const sourceSpan = document.createElement('span');
             sourceSpan.className = 'skill-source';
@@ -139,23 +128,22 @@ class SkillsController {
     }
 
     animateSkills(section) {
-        const skillBars = section.querySelectorAll('.skill-bar');
-        skillBars.forEach((skillBar, index) => {
-            if (!skillBar.dataset.animated) {
+        const skillItems = section.querySelectorAll('.skill-item');
+        skillItems.forEach((skillItem, index) => {
+            if (!skillItem.dataset.animated) {
                 setTimeout(() => {
-                    const percentage = skillBar.getAttribute('data-percentage');
-                    skillBar.style.width = `${percentage}%`;
-                    skillBar.dataset.animated = 'true';
-                }, index * 50); // Stagger animation
+                    skillItem.classList.add('skill-item--visible');
+                    skillItem.dataset.animated = 'true';
+                }, index * 50);
             }
         });
     }
 
     resetSkillsAnimation(section) {
-        const skillBars = section.querySelectorAll('.skill-bar');
-        skillBars.forEach(skillBar => {
-            skillBar.style.width = '0%';
-            delete skillBar.dataset.animated;
+        const skillItems = section.querySelectorAll('.skill-item');
+        skillItems.forEach(skillItem => {
+            skillItem.classList.remove('skill-item--visible');
+            delete skillItem.dataset.animated;
         });
     }
 

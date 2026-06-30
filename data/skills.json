@@ -6,31 +6,26 @@
       "skills": [
         {
           "name": "C++",
-          "percentage": 90,
-          "source": "University & Work at Vector Informatik",
+          "source": "Working Student & University",
+          "skillLevel": null
+        },
+        {
+          "name": "Python",
+          "source": "Working Student & University",
           "skillLevel": null
         },
         {
           "name": "Java",
-          "percentage": 80,
           "source": "University Courses & Personal Projects",
           "skillLevel": null
         },
         {
           "name": "C# & Unity",
-          "percentage": 80,
           "source": "Bachelor Thesis Research",
           "skillLevel": null
         },
         {
-          "name": "Python",
-          "percentage": 85,
-          "source": "University & Personal Projects",
-          "skillLevel": null
-        },
-        {
           "name": "JavaScript",
-          "percentage": 55,
           "source": "University & Web Development",
           "skillLevel": null
         }
@@ -42,31 +37,26 @@
       "skills": [
         {
           "name": "OpenSCENARIO/OpenDRIVE",
-          "percentage": 85,
           "source": "Work at Vector Informatik",
           "skillLevel": null
         },
         {
           "name": "Mixed Reality in Unity",
-          "percentage": 80,
           "source": "Bachelor Thesis Research & student project",
           "skillLevel": null
         },
         {
           "name": "Machine Learning",
-          "percentage": 75,
           "source": "University Courses",
           "skillLevel": null
         },
         {
           "name": "AI with focus on Deep Learning",
-          "percentage": 80,
           "source": "University Courses & Personal Projects",
           "skillLevel": null
         },
         {
           "name": "Automotive Simulation",
-          "percentage": 85,
           "source": "Work at Vector Informatik",
           "skillLevel": null
         }
@@ -78,19 +68,16 @@
       "skills": [
         {
           "name": "German",
-          "percentage": 100,
           "source": "Native Language",
           "skillLevel": "Native"
         },
         {
           "name": "English",
-          "percentage": 90,
           "source": "University, School & Professional Use",
           "skillLevel": "C1"
         },
         {
           "name": "Spanish",
-          "percentage": 15,
           "source": "University",
           "skillLevel": "A1"
         }

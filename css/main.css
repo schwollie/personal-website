@@ -420,7 +420,7 @@ body {
 }
 
 .skill-item {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .skill-item-header {
@@ -442,21 +442,6 @@ body {
     padding: 0.2rem 0.5rem;
     border-radius: 0.25rem;
     font-weight: 500;
-}
-
-.skill-level {
-    background: var(--border);
-    border-radius: 0.5rem;
-    height: 0.5rem;
-    overflow: hidden;
-}
-
-.skill-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    border-radius: 0.5rem;
-    transition: width 0.8s ease;
-    width: 0%;
 }
 
 .skill-source {

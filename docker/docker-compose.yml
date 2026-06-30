@@ -1,0 +1,18 @@
+# Static personal site — TLS via ~/reverse-proxy (Caddy on shared "proxy" network).
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: personal-website
+    restart: always
+    expose:
+      - "80"
+    volumes:
+      - .:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+    name: proxy

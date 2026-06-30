@@ -205,10 +205,6 @@
     .section {
         border: 2px solid var(--border) !important;
     }
-    
-    .skill-bar {
-        background: var(--primary-color) !important;
-    }
 }
 
 /* Dark mode support - system preference fallback */

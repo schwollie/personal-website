@@ -35,8 +35,25 @@ Personal information is stored in `data/cv-data.json` for easy maintenance. Sect
 
 ## Deployment
 
-Hosted on GitHub Pages with custom domain configuration via CNAME file.
+Hosted on this server via Docker + the shared Caddy reverse proxy at `https://christiansen-lars.de`.
+
+```bash
+chmod +x deploy/redeploy.sh
+./deploy/redeploy.sh
+```
+
+`deploy/restart.sh` runs the same script.
+
+**Content edits** (`index.html`, `css/`, `js/`, `data/`) are served live from the repo — no redeploy needed. Hard-refresh the browser if you still see old assets.
+
+**Redeploy** when `docker/docker-compose.yml` changes, or to recreate the nginx container.
+
+Requires the `proxy` Docker network from `~/reverse-proxy` first:
+
+```bash
+cd ~/reverse-proxy && ./deploy/restart.sh
+```
 
 ---
 
-*Last updated: July 2025*
+*Last updated: June 2026*
