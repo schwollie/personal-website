@@ -1,4 +1,5 @@
 # Static personal site — TLS via ~/reverse-proxy (Caddy on shared "proxy" network).
+# Serves the Next.js static export from ./out (run npm run build first).
 
 services:
   web:
@@ -8,7 +9,7 @@ services:
     expose:
       - "80"
     volumes:
-      - .:/usr/share/nginx/html:ro
+      - ./out:/usr/share/nginx/html:ro
     networks:
       - proxy
 

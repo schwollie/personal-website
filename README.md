@@ -6,32 +6,45 @@ Personal portfolio website showcasing my background as a Computer Science studen
 
 ## Overview
 
-This website presents my educational background, work experience, technical skills, and musical engagements. Built with vanilla HTML, CSS, and JavaScript for optimal performance and simplicity.
+This website presents my educational background, work experience, technical skills, and musical engagements. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4, exported as static HTML for fast nginx hosting.
 
-## Key Features
+## Tech Stack
 
-- Responsive design optimized for all devices
-- Animated statistics and interactive sections
-- Skills showcase with source attribution
-- Musical activities and community involvement
-- Modern, accessible interface
+- Next.js 16 (static export)
+- React 19 + TypeScript
+- Tailwind CSS v4
+- Inter font + Font Awesome icons
+- Content in `src/data/*.json`
 
 ## Local Development
 
 1. Clone this repository
-2.  For local development, navigate to the 
-3.  Start a local server using Python:
-    ```bash
-    python3 -m http.server 8000
-    ```
-4.  Open the site in your Chrome browser:
-    ```bash
-    google-chrome http://localhost:8000
-    ```
+2. Install dependencies:
+   ```bash
+   npm ci
+   ```
+3. Start the dev server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000)
 
 ## Content Updates
 
-Personal information is stored in `data/cv-data.json` for easy maintenance. Section content is embedded directly in `index.html`.
+Edit JSON files in `src/data/`:
+
+- `education.json` — degrees, timeline, thesis link
+- `experience.json` — work history
+- `skills.json` — skill categories and sources
+- `engagement.json` — music and community activities
+
+Static assets (images, PDFs) live in `public/`.
+
+After editing content, rebuild for production:
+
+```bash
+npm run build
+```
 
 ## Deployment
 
@@ -44,15 +57,23 @@ chmod +x deploy/redeploy.sh
 
 `deploy/restart.sh` runs the same script.
 
-**Content edits** (`index.html`, `css/`, `js/`, `data/`) are served live from the repo — no redeploy needed. Hard-refresh the browser if you still see old assets.
-
-**Redeploy** when `docker/docker-compose.yml` changes, or to recreate the nginx container.
+The deploy script runs `npm ci`, `npm run build`, and recreates the nginx container serving `out/`.
 
 Requires the `proxy` Docker network from `~/reverse-proxy` first:
 
 ```bash
 cd ~/reverse-proxy && ./deploy/restart.sh
 ```
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server with HMR |
+| `npm run build` | Build static export to `out/` |
+| `npm run lint` | Run ESLint |
+| `npm run typecheck` | Run TypeScript check |
+| `npm run ci` | lint + typecheck + build |
 
 ---
 
